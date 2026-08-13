@@ -1,0 +1,1 @@
+<x-themes.default.newsletter />
