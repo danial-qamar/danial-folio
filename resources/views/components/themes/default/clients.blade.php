@@ -13,7 +13,7 @@
         <div
             class="{{ !$is_section_filled_inverted
                         ? 'dark:border-secondary-700 hover:opacity-100 dark:bg-secondary-50 dark:opacity-80 bg-white opacity-50 dark:hover:opacity-100'
-                        : 'border-secondary-700 dark:border-white hover:opacity-100 dark:hover:opacity-100 bg-secondary-50 dark:bg-white opacity-80 dark:opacity-50' }} flex min-h-24 w-1/4 items-center rounded-md border grayscale transition-all duration-300 hover:grayscale-0 md:w-1/4 lg:w-1/6">
+                        : 'border-secondary-700 dark:border-white hover:opacity-100 dark:hover:opacity-100 bg-secondary-50 dark:bg-white opacity-80 dark:opacity-50' }} flex min-h-24 w-2/5 items-center rounded-md border grayscale transition-all duration-300 hover:grayscale-0 sm:w-1/3 md:w-1/4 lg:w-1/6">
             @php
                 $clientLogoUrl = is_numeric($client->logo) && class_exists(\Awcodes\Curator\Models\Media::class)
                     ? (\Awcodes\Curator\Models\Media::find($client->logo)?->url ?? asset('storage/' . $client->logo))
