@@ -78,6 +78,7 @@ class DatabaseSeeder extends Seeder
             BlogSeeder::class,
             WelcomeNoteSeeder::class,
             BlogPostSeeder::class,
+            VlogSeeder::class,
             SectionSeeder::class,
             HeroSectionSeeder::class,
         ]);
