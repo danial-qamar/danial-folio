@@ -1,8 +1,7 @@
 @props([
 'profile' => null,
 'is_section_filled_inverted' => null,
-'centered' => true,
-'show_info' => true,
+'centered' => false,
 'variant' => 'default',
 'size' => 'md'
 ])
@@ -44,9 +43,11 @@ $sectionOneClasses = $centered
 : 'mx-auto';
 
 // Keep section two with normal layout regardless of centered prop
-$sectionTwoClasses = 'mx-auto w-full text-center';
+$sectionTwoClasses = 'mx-auto';
 
-$profileInfoClasses = $centered ? 'justify-center items-center text-center gap-4 flex-col mx-auto' : 'justify-center gap-4 md:justify-between lg:mt-8 lg:inline-block';
+$profileInfoClasses = 'justify-center gap-4 md:justify-between lg:mt-8 lg:inline-block';
+
+$skillsClasses = 'justify-center';
 @endphp
 
 <div
@@ -94,28 +95,27 @@ $profileInfoClasses = $centered ? 'justify-center items-center text-center gap-4
     </section>
 
     {{-- Profile Section Two: Information --}}
-    @if ($show_info)
     <section class="{{ $sectionTwoClasses }}" id="profile-section-two">
         <div class="flex flex-wrap items-center {{ $profileInfoClasses }}">
             {{-- Professional Information --}}
             @if ($profile->job_position || $profile->localization || $profile->company || $profile->public_email)
-            <div class="tracking-tight text-center flex flex-col items-center mx-auto">
+            <div class="tracking-tight">
                 @if ($profile->company)
-                <span class="flex items-center justify-center gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
+                <span class="flex items-center justify-start gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
                     <x-ui.ionicon icon="business-outline" />
                     <p>{{ $profile->company }}</p>
                 </span>
                 @endif
 
                 @if ($profile->job_position)
-                <span class="flex items-center justify-center gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
+                <span class="flex items-center justify-start gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
                     <x-ui.ionicon icon="briefcase-outline" />
                     <p>{{ $profile->job_position }}</p>
                 </span>
                 @endif
 
                 @if ($profile->localization)
-                <span class="flex items-center justify-center gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
+                <span class="flex items-center justify-start gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
                     <x-ui.ionicon icon="globe-outline" />
                     <p>{{ $profile->localization }}</p>
                 </span>
@@ -124,7 +124,7 @@ $profileInfoClasses = $centered ? 'justify-center items-center text-center gap-4
                 @if ($profile->public_email)
                 <a href="mailto:{{ $profile->public_email }}">
                     <span
-                        class="flex items-center justify-center gap-2 py-1 {{ $currentSize['content'] }} opacity-90 hover:opacity-100 transition-opacity">
+                        class="flex items-center justify-start gap-2 py-1 {{ $currentSize['content'] }} opacity-90 hover:opacity-100 transition-opacity">
                         <x-ui.ionicon icon="mail-outline" />
                         <p>{{ $profile->public_email }}</p>
                     </span>
@@ -133,7 +133,7 @@ $profileInfoClasses = $centered ? 'justify-center items-center text-center gap-4
             </div>
             @endif
 
-            {{-- Download CV / Resume Button --}}
+            {{-- Download CV Button --}}
             @if (!empty($profile->document))
             <div class="mx-auto py-2 text-center">
                 <a href="{{ asset('storage/' . $profile->document) }}" target="_blank" rel="noopener">

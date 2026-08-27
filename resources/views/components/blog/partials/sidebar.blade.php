@@ -1,6 +1,6 @@
 <!-- Sidebar -->
 <div class="space-y-12">
-    <x-themes.common.profile :centered="true" :show_info="false" />
+    <x-themes.common.profile :centered="true" />
 
     <div class="rounded-lg saturn-text border saturn-border-accent p-12 space-y-4">
         <x-blog.widget.counter />
