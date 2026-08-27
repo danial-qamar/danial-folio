@@ -43,9 +43,9 @@ $sectionOneClasses = $centered
 : 'mx-auto';
 
 // Keep section two with normal layout regardless of centered prop
-$sectionTwoClasses = 'mx-auto';
+$sectionTwoClasses = $centered ? 'mx-auto text-center' : 'mx-auto';
 
-$profileInfoClasses = 'justify-center gap-4 md:justify-between lg:mt-8 lg:inline-block';
+$profileInfoClasses = $centered ? 'justify-center text-center flex flex-col items-center mx-auto' : 'justify-center gap-4 md:justify-between lg:mt-8 lg:inline-block';
 
 $skillsClasses = 'justify-center';
 @endphp
@@ -99,23 +99,23 @@ $skillsClasses = 'justify-center';
         <div class="flex flex-wrap items-center {{ $profileInfoClasses }}">
             {{-- Professional Information --}}
             @if ($profile->job_position || $profile->localization || $profile->company || $profile->public_email)
-            <div class="tracking-tight">
+            <div class="tracking-tight text-center flex flex-col items-center mx-auto">
                 @if ($profile->company)
-                <span class="flex items-center justify-start gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
+                <span class="flex items-center {{ $centered ? 'justify-center' : 'justify-start' }} gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
                     <x-ui.ionicon icon="business-outline" />
                     <p>{{ $profile->company }}</p>
                 </span>
                 @endif
 
                 @if ($profile->job_position)
-                <span class="flex items-center justify-start gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
+                <span class="flex items-center {{ $centered ? 'justify-center' : 'justify-start' }} gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
                     <x-ui.ionicon icon="briefcase-outline" />
                     <p>{{ $profile->job_position }}</p>
                 </span>
                 @endif
 
                 @if ($profile->localization)
-                <span class="flex items-center justify-start gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
+                <span class="flex items-center {{ $centered ? 'justify-center' : 'justify-start' }} gap-2 py-1 {{ $currentSize['content'] }} opacity-90">
                     <x-ui.ionicon icon="globe-outline" />
                     <p>{{ $profile->localization }}</p>
                 </span>
@@ -124,7 +124,7 @@ $skillsClasses = 'justify-center';
                 @if ($profile->public_email)
                 <a href="mailto:{{ $profile->public_email }}">
                     <span
-                        class="flex items-center justify-start gap-2 py-1 {{ $currentSize['content'] }} opacity-90 hover:opacity-100 transition-opacity">
+                        class="flex items-center {{ $centered ? 'justify-center' : 'justify-start' }} gap-2 py-1 {{ $currentSize['content'] }} opacity-90 hover:opacity-100 transition-opacity">
                         <x-ui.ionicon icon="mail-outline" />
                         <p>{{ $profile->public_email }}</p>
                     </span>
