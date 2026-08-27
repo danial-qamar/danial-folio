@@ -625,24 +625,26 @@ HTML,
                 'updated_at'  => $vlog['date'],
             ]);
 
-            // Create Page model linked to Post
-            Page::create([
-                'post_id'    => $post->id,
-                'user_id'    => $userId,
-                'title'      => $vlog['title'],
-                'slug'       => 'blog/post/' . $slugTitle . '.html',
-                'style'      => 'blog',
-                'layout'     => 'default',
-                'blocks'     => [
-                    [
-                        'data' => [],
-                        'type' => 'blog.post',
+            // Create Page model linked to Post (updateOrCreate to ensure idempotency)
+            Page::updateOrCreate(
+                ['slug' => 'blog/post/' . $slugTitle . '.html'],
+                [
+                    'post_id'    => $post->id,
+                    'user_id'    => $userId,
+                    'title'      => $vlog['title'],
+                    'style'      => 'blog',
+                    'layout'     => 'default',
+                    'blocks'     => [
+                        [
+                            'data' => [],
+                            'type' => 'blog.post',
+                        ],
                     ],
-                ],
-                'is_active'  => true,
-                'created_at' => $vlog['date'],
-                'updated_at' => $vlog['date'],
-            ]);
+                    'is_active'  => true,
+                    'created_at' => $vlog['date'],
+                    'updated_at' => $vlog['date'],
+                ]
+            );
         }
     }
 
@@ -697,36 +699,71 @@ HTML,
             imageline($img, 0, $y, $width, $y, $gridColor);
         }
 
-        // Fonts
-        $fontBold = '/usr/share/fonts/truetype/quicksand/Quicksand-Bold.ttf';
-        if (!file_exists($fontBold)) {
-            $fontBold = '/usr/share/fonts/truetype/freefont/FreeSansBold.ttf';
+        // Fonts candidate check: repository bundled fonts first, then server system fonts
+        $fontBoldCandidates = [
+            resource_path('fonts/bold.ttf'),
+            '/usr/share/fonts/truetype/quicksand/Quicksand-Bold.ttf',
+            '/usr/share/fonts/truetype/freefont/FreeSansBold.ttf',
+            '/usr/share/fonts/TTF/OpenSans-Bold.ttf',
+            '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
+        ];
+
+        $fontRegularCandidates = [
+            resource_path('fonts/regular.ttf'),
+            '/usr/share/fonts/truetype/freefont/FreeSans.ttf',
+            '/usr/share/fonts/truetype/quicksand/Quicksand-Regular.ttf',
+            '/usr/share/fonts/TTF/OpenSans-Regular.ttf',
+            '/usr/share/fonts/dejavu/DejaVuSans.ttf',
+        ];
+
+        $fontBold = null;
+        foreach ($fontBoldCandidates as $candidate) {
+            if (file_exists($candidate) && is_readable($candidate)) {
+                $fontBold = $candidate;
+                break;
+            }
         }
-        $fontRegular = '/usr/share/fonts/truetype/freefont/FreeSans.ttf';
+
+        $fontRegular = null;
+        foreach ($fontRegularCandidates as $candidate) {
+            if (file_exists($candidate) && is_readable($candidate)) {
+                $fontRegular = $candidate;
+                break;
+            }
+        }
 
         $badgeBg = imagecolorallocate($img, $palette['accent'][0], $palette['accent'][1], $palette['accent'][2]);
         $white = imagecolorallocate($img, 255, 255, 255);
         $lightGray = imagecolorallocate($img, 203, 213, 225);
         $accentText = imagecolorallocate($img, $palette['accent'][0], $palette['accent'][1], $palette['accent'][2]);
 
+        $renderText = function ($img, float $size, float $angle, int $x, int $y, int $color, ?string $fontFile, string $text) {
+            if ($fontFile && file_exists($fontFile) && function_exists('imagettftext')) {
+                @imagettftext($img, $size, $angle, $x, $y, $color, $fontFile, $text);
+            } else {
+                // GD Built-in font fallback (font 5)
+                imagestring($img, 5, $x, max(10, $y - 18), $text, $color);
+            }
+        };
+
         // Draw Badge
         $badgeText = strtoupper($category);
         $badgeWidth = (strlen($badgeText) * 14) + 36;
         imagefilledrectangle($img, 80, 80, 80 + $badgeWidth, 125, $badgeBg);
-        imagettftext($img, 14, 0, 98, 110, $white, $fontBold, $badgeText);
+        $renderText($img, 14, 0, 98, 110, $white, $fontBold, $badgeText);
 
         // Draw Title (wrapped cleanly)
         $wrappedTitle = wordwrap($title, 34, "\n");
         $lines = explode("\n", $wrappedTitle);
         $startY = 220;
         foreach ($lines as $i => $line) {
-            imagettftext($img, 32, 0, 80, $startY + ($i * 54), $white, $fontBold, trim($line));
+            $renderText($img, 32, 0, 80, $startY + ($i * 54), $white, $fontBold, trim($line));
         }
 
         // Draw Footer (Author, Date, Brand)
         $footerY = 580;
-        imagettftext($img, 18, 0, 80, $footerY, $lightGray, $fontRegular, 'By ' . $author . '  •  ' . $date);
-        imagettftext($img, 18, 0, $width - 260, $footerY, $accentText, $fontBold, 'LARAVEL NEWS');
+        $renderText($img, 18, 0, 80, $footerY, $lightGray, $fontRegular, 'By ' . $author . '  •  ' . $date);
+        $renderText($img, 18, 0, $width - 260, $footerY, $accentText, $fontBold, 'LARAVEL NEWS');
 
         imagejpeg($img, $filepath, 92);
         imagedestroy($img);
