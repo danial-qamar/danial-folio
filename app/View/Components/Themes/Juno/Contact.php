@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Themes\Juno;
 
+use App\Models\Profile;
 use App\Models\Setting;
 use App\Traits\SectionLoader;
 use Closure;
@@ -15,9 +16,12 @@ class Contact extends Component
      */
     use SectionLoader;
 
+    public ?string $calendlyUrl;
+
     public function __construct()
     {
         $this->loadSection('contact');
+        $this->calendlyUrl = $this->resolveCalendlyUrl();
     }
 
     /**
@@ -37,4 +41,21 @@ class Contact extends Component
 
         return $data;
     }
+
+    public function resolveCalendlyUrl(): ?string
+    {
+        if (! empty($this->content['calendly_url'])) {
+            $url = $this->content['calendly_url'];
+
+            return preg_match('~^https?://~i', $url) ? $url : 'https://' . $url;
+        }
+
+        $profile = Profile::first();
+        if ($profile && $profile->resolved_calendly_url) {
+            return $profile->resolved_calendly_url;
+        }
+
+        return null;
+    }
 }
+

@@ -223,6 +223,11 @@ class SectionResource extends Resource
                                                             ->placeholder(__('Enter business hours'))
                                                             ->prefixIcon('heroicon-o-clock')
                                                             ->helperText(__('The business hours for contact')),
+                                                        Forms\Components\TextInput::make('content.calendly_url')
+                                                            ->label(__('Calendly URL'))
+                                                            ->placeholder(__('e.g., https://calendly.com/yourusername/30min'))
+                                                            ->prefixIcon('heroicon-o-calendar')
+                                                            ->helperText(__('Optional custom Calendly URL for this section (overrides profile default)')),
                                                         Textarea::make('content.google_map')
                                                             ->label(__('Google Map'))
                                                             ->columnSpanFull()

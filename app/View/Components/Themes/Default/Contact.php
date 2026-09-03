@@ -19,10 +19,13 @@ class Contact extends Component
 
     public $socialNetwork;
 
+    public ?string $calendlyUrl;
+
     public function __construct()
     {
         $this->socialNetwork = $this->checkSocialNetwork();
         $this->loadSection('contact');
+        $this->calendlyUrl = $this->resolveCalendlyUrl();
     }
 
     /**
@@ -39,5 +42,21 @@ class Contact extends Component
             ->first()?->social;
 
         return ! empty($data);
+    }
+
+    public function resolveCalendlyUrl(): ?string
+    {
+        if (! empty($this->content['calendly_url'])) {
+            $url = $this->content['calendly_url'];
+
+            return preg_match('~^https?://~i', $url) ? $url : 'https://' . $url;
+        }
+
+        $profile = Profile::first();
+        if ($profile && $profile->resolved_calendly_url) {
+            return $profile->resolved_calendly_url;
+        }
+
+        return null;
     }
 }

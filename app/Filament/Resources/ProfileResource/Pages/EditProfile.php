@@ -204,6 +204,16 @@ class EditProfile extends EditRecord
                                 Section::make(__('Connect Your Profiles'))
                                     ->description(__('Add links to your social media and professional profiles'))
                                     ->schema([
+                                        TextInput::make('calendly_url')
+                                            ->label(__('Calendly Meeting Link'))
+                                            ->placeholder(__('e.g., calendly.com/yourusername/30min'))
+                                            ->helperText(__('Enter your Calendly scheduling link (without https://) to display a meeting booking option beside the Contact Form.'))
+                                            ->prefix('https://')
+                                            ->prefixIcon('heroicon-o-calendar')
+                                            ->maxLength(255)
+                                            ->nullable()
+                                            ->columnSpanFull(),
+
                                         Repeater::make('social')
                                             ->cloneable()
                                             ->collapsible()
@@ -232,6 +242,7 @@ class EditProfile extends EditRecord
                                                     ->prefixIcon('heroicon-o-user')
                                                     ->options([
                                                         'behance'       => 'Behance',
+                                                        'calendly'      => 'Calendly',
                                                         'codepen'       => 'Codepen',
                                                         'discord'       => 'Discord',
                                                         'dribbble'      => 'Dribbble',

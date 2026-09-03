@@ -58,6 +58,18 @@
                 </x-ui.info-box>
                 @endif
                 {{-- End Social Network --}}
+                {{-- Calendly Info Box --}}
+                @if ($calendlyUrl)
+                <x-ui.info-box icon="calendar-outline" title="{{ __('Schedule a Meeting') }}">
+                    <a href="{{ $calendlyUrl }}" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-sm font-medium saturn-text hover:opacity-80 transition-all">
+                        <x-ui.ionicon icon="calendar-outline" class="h-4 w-4" />
+                        <span>{{ __('Book time on Calendly') }}</span>
+                        <x-ui.ionicon icon="open-outline" class="h-3.5 w-3.5 opacity-70" />
+                    </a>
+                </x-ui.info-box>
+                @endif
+                {{-- End Calendly Info Box --}}
                 {{-- Empty Fields --}}
                 @if (
                 ($content['address'] ?? null) == null ||
@@ -68,8 +80,37 @@
             </div>
             @endif
         </div>
-        {{-- Livewire: Message Form --}}
+        {{-- Livewire: Message Form & Calendly --}}
         <div class="w-full p-4 lg:w-1/3 lg:p-8">
+            @if ($calendlyUrl)
+            {{-- Calendly Schedule Card --}}
+            <div class="mb-6 rounded-xl border saturn-border saturn-bg-accent/40 p-5 shadow-sm backdrop-blur-sm transition-all hover:border-saturn-500/50">
+                <div class="flex items-start gap-3">
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary-900 text-white dark:bg-secondary-100 dark:text-secondary-950">
+                        <x-ui.ionicon icon="calendar-outline" class="h-5 w-5" />
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-sm font-semibold saturn-text">{{ __('Schedule a Meeting') }}</h3>
+                        <p class="mt-0.5 text-xs saturn-text-accent">{{ __('Prefer to talk directly? Pick a time on my calendar.') }}</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <a href="{{ $calendlyUrl }}" target="_blank" rel="noopener noreferrer" class="block">
+                        <button type="button" class="saturn-btn-secondary w-full justify-center text-xs font-medium py-2.5">
+                            <x-ui.ionicon icon="calendar-outline" class="h-4 w-4 mr-1" />
+                            <span>{{ __('Book a Meeting') }}</span>
+                            <x-ui.ionicon icon="open-outline" class="h-3 w-3 ml-1 opacity-70" />
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="relative my-6 text-center">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t saturn-border"></div>
+                </div>
+                <span class="relative bg-white px-3 text-xs uppercase tracking-wider text-secondary-500 dark:bg-secondary-950 saturn-text-accent">{{ __('Or send a message') }}</span>
+            </div>
+            @endif
             <livewire:mail.create-mail :$is_section_filled_inverted />
         </div>
     </section>

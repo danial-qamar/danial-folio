@@ -28,4 +28,34 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the resolved and formatted Calendly URL from direct field or social links.
+     */
+    public function getResolvedCalendlyUrlAttribute(): ?string
+    {
+        $url = null;
+
+        if (! empty($this->calendly_url)) {
+            $url = $this->calendly_url;
+        } elseif (! empty($this->social) && is_array($this->social)) {
+            foreach ($this->social as $item) {
+                if (
+                    ($item['is_active'] ?? false) &&
+                    strtolower($item['social_network'] ?? '') === 'calendly' &&
+                    ! empty($item['profile_link'])
+                ) {
+                    $url = $item['profile_link'];
+                    break;
+                }
+            }
+        }
+
+        if (empty($url)) {
+            return null;
+        }
+
+        return preg_match('~^https?://~i', $url) ? $url : 'https://' . $url;
+    }
 }
+

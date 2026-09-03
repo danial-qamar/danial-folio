@@ -29,6 +29,16 @@ class EditSocialNetwork extends EditRecord
                 ->description(__('These links will be displayed on your profile page.'))
                 ->icon('heroicon-o-link')
                 ->schema([
+                    TextInput::make('calendly_url')
+                        ->label(__('Calendly Meeting Link'))
+                        ->placeholder(__('e.g., calendly.com/yourusername/30min'))
+                        ->helperText(__('Enter your Calendly scheduling link (without https://) to display a meeting booking option beside the Contact Form.'))
+                        ->prefix('https://')
+                        ->prefixIcon('heroicon-o-calendar')
+                        ->maxLength(255)
+                        ->nullable()
+                        ->columnSpanFull(),
+
                     Repeater::make('social')
                         ->cloneable()
                         ->itemLabel(function (array $state): string {
@@ -51,6 +61,7 @@ class EditSocialNetwork extends EditRecord
                                 ->prefixIcon('heroicon-o-user')
                                 ->options([
                                     'behance'       => 'Behance',
+                                    'calendly'      => 'Calendly',
                                     'codepen'       => 'Codepen',
                                     'discord'       => 'Discord',
                                     'dribbble'      => 'Dribbble',
