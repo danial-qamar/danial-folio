@@ -75,521 +75,645 @@ class VlogSeeder extends Seeder
             mkdir($storageDir, 0755, true);
         }
 
-        // 3. Articles published AFTER August 17, 2026 (Aug 18 - Aug 26, 2026)
+        // 3. Articles published from September 04 to September 21, 2026
         $vlogs = [
             [
-                'title'       => 'Compile PHP to Native Binaries with TypePHP',
+                'title'       => 'What We Know About Laravel 14',
                 'category_key'=> 'news',
-                'author'      => 'Eric L. Barnes',
-                'date'        => '2026-08-26 16:30:00',
-                'theme'       => 'purple',
-                'is_featured' => true,
-                'resume'      => 'TypePHP enables ahead-of-time (AOT) compilation of typed PHP source code into standalone, self-contained native machine binaries without embedding an entire PHP runtime.',
-                'content'     => <<<'HTML'
-<h2>Ahead-Of-Time Native Binaries for Modern PHP</h2>
-<p>The PHP community has taken a monumental leap forward with <strong>TypePHP</strong>, an open-source toolchain that compiles strictly typed PHP source code into native, standalone binary executables for Linux (x86_64, arm64) and macOS.</p>
-
-<p>Unlike traditional tools such as Micro-PHP or Static-PHP CLI which bundle a minimized PHP C engine alongside user scripts, TypePHP translates PHP AST directly into LLVM IR. The result is zero-dependency machine code with microsecond startup times and drastically reduced memory footprints.</p>
-
-<h3>Key Architectural Features</h3>
-<ul>
-    <li><strong>AOT Native Compilation:</strong> Eliminates opcode compilation overhead by compiling typed PHP classes into machine code.</li>
-    <li><strong>Zero-Dependency Distribution:</strong> Target binaries run without requiring PHP, FPM, or external extensions pre-installed on host systems.</li>
-    <li><strong>Strict Typing Enforcement:</strong> Leverages PHP 8.4 property types, return types, and generics syntax for aggressive optimizer passes.</li>
-</ul>
-
-<h3>Compiling Your First Binary</h3>
-<p>Here is an example of compiling a CLI utility written in PHP into a native executable:</p>
-
-<pre><code>// src/main.php
-declare(strict_types=1);
-
-namespace App;
-
-final class Benchmark
-{
-    public static function run(int $iterations): float
-    {
-        $start = microtime(true);
-        $sum = 0;
-        for ($i = 0; $i &lt; $iterations; $i++) {
-            $sum += $i;
-        }
-        return microtime(true) - $start;
-    }
-}
-
-$elapsed = Benchmark::run(10000000);
-echo "Executed in {$elapsed} seconds\n";
-</code></pre>
-
-<p>Building the executable with the TypePHP compiler CLI:</p>
-
-<pre><code>$ typephp build src/main.php --output bin/benchmark --optimize=O3
-Building target: bin/benchmark [x86_64-linux-gnu]
-[1/3] Parsing AST & type checking... Done.
-[2/3] Generating LLVM IR & applying O3 optimization... Done.
-[3/3] Linking native binary... Done (Size: 4.2 MB).
-
-$ ./bin/benchmark
-Executed in 0.00312 seconds
-</code></pre>
-
-<p>TypePHP opens up exciting possibilities for building high-performance CLI tools, edge workers, and lightweight microservices using familiar PHP syntax.</p>
-HTML,
-            ],
-            [
-                'title'       => 'State of Laravel 2026 Survey Is Now Open',
-                'category_key'=> 'news',
-                'author'      => 'Eric L. Barnes',
-                'date'        => '2026-08-26 14:15:00',
+                'author'      => 'Paul Redmond',
+                'date'        => '2026-09-21 16:00:00',
                 'theme'       => 'rose',
                 'is_featured' => true,
-                'resume'      => 'The official State of Laravel 2026 community survey is live. Share your experience with Laravel 13, server deployments, AI tools, and frontend stacks.',
+                'resume'      => 'An in-depth preview of what is coming in Laravel 14, including PHP 8.4+ requirement, enhanced container performance, updated defaults, and deprecation timelines.',
                 'content'     => <<<'HTML'
-<h2>Participate in the Annual State of Laravel Survey</h2>
-<p>The annual <strong>State of Laravel 2026</strong> community survey is officially open for responses. Hosted by Laravel News, this survey collects benchmark data from tens of thousands of developers worldwide to map ecosystem growth, framework trends, and tooling preferences.</p>
+<h2>What We Know About Laravel 14</h2>
+<p>As the Laravel ecosystem continues its relentless pace of innovation, attention has begun turning toward the upcoming release of <strong>Laravel 14</strong>. Following the annual release cadence established in recent years, Laravel 14 brings modern language primitives, aggressive container optimizations, and clean developer workflows.</p>
 
-<h3>Key Focus Areas for 2026</h3>
-<p>This year’s survey explores several major shifts across the Laravel ecosystem:</p>
+<h3>PHP 8.4 Minimum Requirement</h3>
+<p>Laravel 14 will officially require <strong>PHP 8.4</strong> or higher. This requirement unlocks several powerful PHP language improvements across framework internals:</p>
 <ul>
-    <li><strong>Laravel 13 & PHP 8.4 Adoption:</strong> Upgrades, adoption blockers, and performance gains reported across production applications.</li>
-    <li><strong>Frontend Stacks:</strong> Comparative usage rates between Livewire 3, Inertia.js (Vue 3 / React), traditional Blade components, and hybrid mobile solutions like NativePHP.</li>
-    <li><strong>Application Runtimes & Deployment:</strong> Transition rates towards FrankenPHP, Laravel Herd Pro, Docker containers, and serverless architectures like Laravel Vapor.</li>
-    <li><strong>AI Integration:</strong> How developers are utilizing the official Laravel AI SDK, local LLM integrations, and AI coding agents inside their teams.</li>
+    <li><strong>Property Hooks:</strong> Built-in property get/set hooks drastically reduce the boilerplate needed for custom Eloquent model accessors and mutators.</li>
+    <li><strong>Asymmetric Visibility:</strong> Native <code>public private(set)</code> modifiers will enhance immutability on core framework value objects and events.</li>
+    <li><strong>New Array Find Functions:</strong> Native <code>array_find()</code>, <code>array_find_key()</code>, and <code>array_any()</code> functions directly reduce auxiliary collection overhead.</li>
 </ul>
 
-<h3>How to Take the Survey</h3>
-<p>The survey takes approximately 5 minutes to complete and is completely anonymous. Aggregated survey results and interactive charts will be published next month.</p>
-HTML,
-            ],
-            [
-                'title'       => 'Testing Best Practices Skill in Laravel Boost v2.6.0',
-                'category_key'=> 'news',
-                'author'      => 'Yannick Lyn Fatt',
-                'date'        => '2026-08-26 11:00:00',
-                'theme'       => 'blue',
-                'is_featured' => false,
-                'resume'      => 'Laravel Boost v2.6.0 introduces an automated testing audit skill for Pest PHP and PHPUnit, enforcing AAA patterns, clean dataset generation, and isolated state assertions.',
-                'content'     => <<<'HTML'
-<h2>Automated Test Suite Auditing with Laravel Boost v2.6.0</h2>
-<p>The latest release of <strong>Laravel Boost (v2.6.0)</strong> adds a dedicated <em>Testing Best Practices Skill</em>. This feature automates code quality reviews across Pest PHP and PHPUnit suites to guarantee clean test architecture and prevent flaky test suites.</p>
+<h3>Container & Dependency Injection Speedups</h3>
+<p>Early benchmarks from core contributors show noticeable performance improvements in service container resolution. By taking advantage of pre-compiled reflection caches and streamlined pipeline middleware, application boot times and memory usage have been trimmed down across high-concurrency requests.</p>
 
-<h3>Enforced Testing Principles</h3>
-<ul>
-    <li><strong>Arrange-Act-Assert (AAA) Discipline:</strong> Enforces distinct visual and logical boundaries between test setup, code invocation, and state verification.</li>
-    <li><strong>Dataset Generator Optimization:</strong> Replaces hardcoded loops with expressive Pest dataset generators.</li>
-    <li><strong>Database Isolation Verification:</strong> Flags missing <code>RefreshDatabase</code> or <code>DatabaseTransactions</code> traits on tests that mutate persistent state.</li>
-    <li><strong>Precise Mocking Assertions:</strong> Detects over-mocking and ensures container facade mocks assert exact argument shapes.</li>
-</ul>
+<pre><code>// Utilizing PHP 8.4 property hooks in Laravel 14 models
+namespace App\Models;
 
-<h3>Pest Best Practices Example</h3>
-<pre><code>// Refactored Pest AAA Pattern
-it('dispatches welcome notification upon registration', function () {
-    // Arrange
-    Notification::fake();
-    $payload = User::factory()->raw(['password' => 'secret123']);
+use Illuminate\Database\Eloquent\Model;
 
-    // Act
-    $response = $this->post(route('register'), $payload);
-
-    // Assert
-    $response->assertRedirect(route('dashboard'));
-    Notification::assertSentTo(
-        User::where('email', $payload['email'])->first(),
-        WelcomeNotification::class
-    );
-});
-</code></pre>
-HTML,
-            ],
-            [
-                'title'       => 'Query Binding Masking and whereBinary() in Laravel 13.27',
-                'category_key'=> 'news',
-                'author'      => 'Paul Redmond',
-                'date'        => '2026-08-26 09:45:00',
-                'theme'       => 'emerald',
-                'is_featured' => false,
-                'resume'      => 'Laravel 13.27 introduces automatic sensitive binding masking in query logs and Telescope, alongside a dedicated whereBinary() builder method.',
-                'content'     => <<<'HTML'
-<h2>Enhanced Privacy & Binary Queries in Laravel 13.27</h2>
-<p>Laravel 13.27 brings two major database improvements: <strong>Query Binding Masking</strong> for masking secret attributes in database logs and a new <code>whereBinary()</code> method on the Eloquent Query Builder.</p>
-
-<h3>Masking Sensitive Query Bindings</h3>
-<p>When logging executed SQL queries in development or production diagnostics, sensitive parameters (like passwords, API keys, or SSNs) could previously leak into plain text logs. With Laravel 13.27, attributes marked as hidden or sensitive on models are automatically redacted in query logs:</p>
-
-<pre><code>use App\Models\User;
-use Illuminate\Support\Facades\DB;
-
-// Query logging with automatic masking enabled
-DB::listen(function ($query) {
-    logger()->info($query->sql, $query->maskedBindings());
-});
-
-User::where('api_token', 'secret_token_12345')->first();
-// Log Output: select * from "users" where "api_token" = [REDACTED]
-</code></pre>
-
-<h3>Using the <code>whereBinary()</code> Builder Method</h3>
-<pre><code>use App\Models\Document;
-
-$hash = hash('sha256', 'payload-contents', true); // Raw binary
-
-$document = Document::whereBinary('checksum', '=', $hash)->first();
-</code></pre>
-HTML,
-            ],
-            [
-                'title'       => 'Laravel AI: Load Tools On Demand With ToolSearch',
-                'category_key'=> 'news',
-                'author'      => 'Yannick Lyn Fatt',
-                'date'        => '2026-08-26 08:00:00',
-                'theme'       => 'purple',
-                'is_featured' => false,
-                'resume'      => 'Reduce context window bloat in AI agents by dynamically loading tools on demand using ToolSearch in Laravel AI SDK.',
-                'content'     => <<<'HTML'
-<h2>Dynamic Tool Discovery in Laravel AI</h2>
-<p>When building complex AI agents with hundreds of available functions (such as CRM actions, database queries, and external APIs), sending every tool schema in the system prompt wastes context window tokens and increases response latency.</p>
-
-<p>The Laravel AI SDK solves this with <strong>ToolSearch</strong>, allowing agents to dynamically query and activate only the tools necessary for the user's specific request.</p>
-
-<pre><code>use Laravel\AI\Agent;
-use Laravel\AI\Tools\ToolSearch;
-use App\AI\Tools\CreateInvoice;
-use App\AI\Tools\SendSlackNotification;
-
-class SupportAgent extends Agent
+class Invoice extends Model
 {
-    public function tools(): array
-    {
-        return [
-            ToolSearch::make([
-                CreateInvoice::class,
-                SendSlackNotification::class,
-            ])->threshold(0.75),
-        ];
+    public float $amount;
+
+    public string $formattedAmount {
+        get => '$' . number_format($this->amount, 2);
     }
 }
 </code></pre>
+
+<h3>Deprecations and Smooth Upgrade Path</h3>
+<p>Consistent with Laravel's commitment to developer ergonomics, Laravel 14 maintains an effortless upgrade path for apps on Laravel 13. Upgrading via Laravel Shift or Composer will take less than thirty minutes for most compliant applications.</p>
 HTML,
             ],
             [
-                'title'       => 'Laravel Auditor Audits Your App With Your Own AI Agent',
+                'title'       => 'Difflock: Lint Laravel Migrations and Diff Your Schema',
                 'category_key'=> 'laravel-packages',
-                'author'      => 'Paul Redmond',
-                'date'        => '2026-08-25 15:20:00',
-                'theme'       => 'amber',
+                'author'      => 'Yannick Lyn Fatt',
+                'date'        => '2026-09-18 14:30:00',
+                'theme'       => 'purple',
                 'is_featured' => true,
-                'resume'      => 'Laravel Auditor is an open-source package that deploys an autonomous AI security agent to scan routes, middleware policies, and database bottlenecks.',
+                'resume'      => 'Difflock is a migration linter and schema diffing tool for Laravel that flags destructive changes, dropped columns, and unindexed foreign keys in CI/CD before deployment.',
                 'content'     => <<<'HTML'
-<h2>Autonomous Security & Performance Audits in Laravel</h2>
-<p><strong>Laravel Auditor</strong> is a new open-source package designed to run automated security, vulnerability, and performance audits on your application codebase using local or cloud AI models.</p>
+<h2>Schema Safety with Difflock</h2>
+<p>Database migrations are often the highest-risk step in continuous deployment pipelines. Accidental column renames, missing foreign key indexes, and table locking operations can cause unexpected downtime on production databases. <strong>Difflock</strong> is an open-source schema diffing and migration linting tool tailored specifically for Laravel.</p>
 
-<h3>Key Audit Capabilities</h3>
+<h3>Catching Destructive Changes in CI/CD</h3>
+<p>Difflock analyzes your migration files against a snapshot of your current production schema. It instantly detects risky patterns such as:</p>
 <ul>
-    <li><strong>Authorization Policy Checks:</strong> Scans routes and controllers to flag missing policy checks.</li>
-    <li><strong>N+1 Query Detection:</strong> Analyzes Blade templates and API resources for un-eager-loaded relationships.</li>
-    <li><strong>Mass Assignment & Input Hygiene:</strong> Identifies unvalidated request arrays passed into Eloquent calls.</li>
+    <li>Dropping columns without zero-downtime deprecation steps.</li>
+    <li>Adding non-nullable columns without fallback default values.</li>
+    <li>Creating foreign keys without underlying indexes, leading to cascading table locks.</li>
+    <li>Modifying large table structures on PostgreSQL or MySQL that trigger full table rewrites.</li>
 </ul>
 
-<pre><code>$ php artisan audit:run --deep
+<h3>Running the Difflock Linter</h3>
+<pre><code># Install Difflock via Composer
+composer require --dev difflock/difflock-laravel
 
-[+] Analyzing Application Routes (142 routes)...
-[+] Auditing Authorization Policies...
-[+] Scanning Eloquent Queries...
-    [ALERT] Potential N+1 query in resources/views/orders/index.blade.php:34
+# Run migration lint check
+php artisan difflock:lint
+
+# Output:
+# [FAIL] 2026_09_18_000001_update_orders_table.php
+#   Line 18: Dropping column 'legacy_status' without a 2-step migration strategy.
+#   Line 22: Added foreignId 'customer_id' missing index on large table 'orders'.
 </code></pre>
+
+<p>By embedding <code>php artisan difflock:lint</code> into your GitHub Actions workflow, your team can guarantee zero database regression accidents.</p>
 HTML,
             ],
             [
-                'title'       => 'A simple form builder that stays out of your way',
-                'category_key'=> 'sponsor',
-                'author'      => 'Andreas M.',
-                'date'        => '2026-08-24 17:00:00',
+                'title'       => 'Fresh Package: Laravel Package Skeleton with Testbench, CI, and Boost Integration',
+                'category_key'=> 'laravel-packages',
+                'author'      => 'Paul Redmond',
+                'date'        => '2026-09-17 16:30:00',
                 'theme'       => 'cyan',
                 'is_featured' => false,
-                'resume'      => 'Discover a lightweight Blade form builder component library focused on accessibility, custom markup freedom, and zero framework clutter.',
+                'resume'      => 'Fresh Package provides a modern boilerplate for developing Laravel packages, equipped with Orchestra Testbench, GitHub Actions CI matrices, Pest PHP, and Laravel Boost.',
                 'content'     => <<<'HTML'
-<h2>Clean, Accessible Blade Forms Without the Bloat</h2>
-<p>Building forms in Blade can quickly become repetitive, yet heavy form builder packages often restrict HTML markup and force opinionated CSS styling. <strong>FormCraft Blade</strong> offers a developer-friendly middle ground.</p>
+<h2>Modern Package Development with Fresh Package</h2>
+<p>Creating a reusable Laravel package often involves hours of repetitive setup: configuring Composer autoloaders, wiring Orchestra Testbench, authoring GitHub Actions test matrices, and writing service providers. <strong>Fresh Package</strong> is a streamlined skeleton repository that gives you a complete, production-ready package architecture in seconds.</p>
 
-<pre><code>&lt;x-form action="{{ route('profile.update') }}" method="PUT" class="space-y-6"&gt;
-    &lt;x-form-input name="username" label="Username" :value="$user-&gt;username" required /&gt;
-    &lt;x-form-email name="email" label="Email Address" :value="$user-&gt;email" required /&gt;
-    &lt;x-form-submit class="btn-primary"&gt;Save Changes&lt;/x-form-submit&gt;
-&lt;/x-form&gt;
-</code></pre>
-HTML,
-            ],
-            [
-                'title'       => 'Laravel AI: Trace Agent Runs With Lifecycle Events',
-                'category_key'=> 'news',
-                'author'      => 'Yannick Lyn Fatt',
-                'date'        => '2026-08-24 13:30:00',
-                'theme'       => 'purple',
-                'is_featured' => false,
-                'resume'      => 'Hook into agent execution pipelines with real-time lifecycle events in Laravel AI SDK for custom metrics, WebSockets, and audit logging.',
-                'content'     => <<<'HTML'
-<h2>Real-time Telemetry with Laravel AI Lifecycle Events</h2>
-<p>As AI agents become core components of enterprise Laravel applications, gaining visibility into every step of an agent's execution loop is crucial. The latest Laravel AI SDK updates introduce fine-grained <strong>Lifecycle Events</strong>.</p>
-
-<h3>Dispatched Lifecycle Events</h3>
+<h3>What’s Included in the Skeleton</h3>
 <ul>
-    <li><code>AgentStarting</code>: Fired when an agent run initiates with prompt context.</li>
-    <li><code>ToolExecuting</code>: Fired immediately before a tool function is invoked.</li>
-    <li><code>ToolExecuted</code>: Fired after a tool returns execution results.</li>
-    <li><code>AgentCompleted</code>: Fired when the agent completes its response pipeline.</li>
+    <li><strong>Pest PHP 3 + Orchestra Testbench:</strong> Pre-wired testing environment supporting both feature and unit testing across multiple Laravel and PHP versions.</li>
+    <li><strong>GitHub Actions Matrix:</strong> Automated continuous integration testing against PHP 8.3 and PHP 8.4 across current Laravel versions.</li>
+    <li><strong>Laravel Boost Integration:</strong> Built-in support for Laravel Boost skills to ensure consistent formatting, static analysis (PHPStan level 9), and security audits.</li>
+    <li><strong>Automatic Service Provider Discovery:</strong> Configured <code>composer.json</code> extra attributes ready for immediate installation.</li>
 </ul>
-HTML,
-            ],
-            [
-                'title'       => 'Laravel AI: Get Raw HTTP Responses and Rate Limits',
-                'category_key'=> 'news',
-                'author'      => 'Yannick Lyn Fatt',
-                'date'        => '2026-08-24 10:15:00',
-                'theme'       => 'blue',
-                'is_featured' => false,
-                'resume'      => 'Inspect provider response headers, token usage quotas, and raw JSON payloads directly through the Laravel AI HTTP client.',
-                'content'     => <<<'HTML'
-<h2>Inspecting HTTP Headers & Quotas in Laravel AI</h2>
-<p>Debugging AI model integrations requires visibility into low-level HTTP responses, rate limit reset times, and exact token counts returned by providers like OpenAI, Anthropic, and Ollama.</p>
 
-<pre><code>use Laravel\AI\Facades\AI;
+<h3>Spinning Up a New Package</h3>
+<pre><code># Create your new package using composer create-project
+composer create-project fresh-package/laravel-skeleton my-laravel-package --prefer-dist
 
-$response = AI::agent('coder')
-    ->prompt('Write a PHP regex pattern for emails')
-    ->withRawResponse()
-    ->run();
+cd my-laravel-package
 
-$statusCode = $response->status(); // 200
-$remainingRequests = $response->header('x-ratelimit-remaining-requests');
-$tokenUsage = $response->usage();
+# Run test suite immediately
+./vendor/bin/pest
 </code></pre>
-HTML,
-            ],
-            [
-                'title'       => 'Agent Run Observability in Laravel AI SDK 0.11',
-                'category_key'=> 'news',
-                'author'      => 'Yannick Lyn Fatt',
-                'date'        => '2026-08-21 16:00:00',
-                'theme'       => 'rose',
-                'is_featured' => false,
-                'resume'      => 'Laravel AI SDK 0.11 brings native OpenTelemetry support, flame-graphs for multi-turn agent chains, and integrated latency tracing.',
-                'content'     => <<<'HTML'
-<h2>OpenTelemetry & Flame-Graphs for AI Agents</h2>
-<p>The release of <strong>Laravel AI SDK 0.11</strong> focuses on production observability. Developers can now trace multi-turn agent conversations across distributed microservices with native OpenTelemetry integrations.</p>
 
-<pre><code>// config/ai.php
-return [
-    'observability' => [
-        'enabled'  => env('AI_OBSERVABILITY_ENABLED', true),
-        'driver'   => 'opentelemetry',
-        'endpoint' => env('OTEL_EXPORTER_OTLP_ENDPOINT', 'http://localhost:4318'),
-    ],
-];
-</code></pre>
+<p>Fresh Package removes the friction from open-source contribution and internal company package distribution.</p>
 HTML,
             ],
             [
-                'title'       => 'Debounced Queued Event Listeners in Laravel',
+                'title'       => 'Inertia DevTools Now Available for Firefox',
                 'category_key'=> 'news',
                 'author'      => 'Paul Redmond',
-                'date'        => '2026-08-21 11:30:00',
-                'theme'       => 'emerald',
+                'date'        => '2026-09-17 11:15:00',
+                'theme'       => 'amber',
                 'is_featured' => false,
-                'resume'      => 'Prevent queue flooding by defining $debounce durations on queued event listeners in Laravel.',
+                'resume'      => 'Inertia.js developers on Firefox can now inspect component hierarchies, page props, real-time router events, and scroll positions with the newly released Firefox extension.',
                 'content'     => <<<'HTML'
-<h2>Native Event Listener Debouncing in Laravel</h2>
-<p>When user actions trigger frequent database updates, dispatching queued event listeners for every single update can flood queue workers. Laravel now supports native listener debouncing directly on queued event listeners.</p>
+<h2>Inertia DevTools Expands to Mozilla Firefox</h2>
+<p>Developers who prefer Mozilla Firefox for web development now have official access to <strong>Inertia DevTools</strong>. Previously available exclusively for Chromium-based browsers, the extension is now officially signed and listed on the Firefox Add-ons repository.</p>
 
-<pre><code>namespace App\Listeners;
+<h3>Core DevTools Capabilities</h3>
+<p>The Inertia DevTools tab integrates directly into the Firefox Developer Tools panel, offering real-time visibility into your frontend state:</p>
+<ul>
+    <li><strong>Page Props Explorer:</strong> Inspect all props passed from Laravel controllers into Vue, React, or Svelte page components.</li>
+    <li><strong>Component Tree:</strong> Navigate visual component hierarchies and examine active route parameters.</li>
+    <li><strong>Event Timeline:</strong> Track Inertia router visits, partial reloads, scroll state persistence, and cancelled requests in chronological order.</li>
+    <li><strong>Form State Tracking:</strong> Inspect <code>useForm</code> dirty states, validation errors, and progress indicators live.</li>
+</ul>
 
-use App\Events\UserProfileUpdated;
-use Illuminate\Contracts\Queue\ShouldQueue;
+<h3>Installing on Firefox</h3>
+<p>Visit the Firefox Add-ons site and search for <em>Inertia DevTools</em>, or install directly from the official Inertia.js documentation page. The extension immediately activates when an Inertia-powered application is detected in your active browser tab.</p>
+HTML,
+            ],
+            [
+                'title'       => 'Laravel Scalpel Scans for Filesystem Intrusion Evidence',
+                'category_key'=> 'laravel-packages',
+                'author'      => 'Yannick Lyn Fatt',
+                'date'        => '2026-09-16 15:45:00',
+                'theme'       => 'rose',
+                'is_featured' => false,
+                'resume'      => 'Laravel Scalpel is a security package that scans your project filesystem for indicators of compromise, webshell backdoors, unexpected executable files, and altered vendor code.',
+                'content'     => <<<'HTML'
+<h2>Auditing Filesystem Integrity with Laravel Scalpel</h2>
+<p>Even with strict server configuration, compromised file uploads or third-party vulnerabilities can leave subtle webshells or rogue PHP scripts in storage or public directories. <strong>Laravel Scalpel</strong> is an incident response and forensic auditing tool built specifically for Laravel projects.</p>
 
-class ReindexUserProfile implements ShouldQueue
+<h3>Forensic Detection Engines</h3>
+<p>Laravel Scalpel evaluates your application through multiple distinct security layers:</p>
+<ul>
+    <li><strong>Vendor Integrity Hashing:</strong> Compares files inside <code>vendor/</code> against Composer lockfile distribution hashes to verify that core vendor packages have not been tampered with.</li>
+    <li><strong>Webshell Heuristics:</strong> Detects dangerous PHP functions (<code>eval()</code>, <code>base64_decode()</code>, <code>proc_open()</code>) concealed inside non-code asset directories.</li>
+    <li><strong>Public Directory Verification:</strong> Alerts if executable PHP or shell scripts exist inside <code>public/storage</code> or file upload paths.</li>
+    <li><strong>Hidden File Audits:</strong> Uncovers suspicious dotfiles and unusual file permission configurations across application roots.</li>
+</ul>
+
+<h3>Running an Intrusion Scan</h3>
+<pre><code># Run complete filesystem scan
+php artisan scalpel:scan --strict
+
+# Schedule daily automated health checks
+$schedule->command('scalpel:scan --notify-on-failure')->dailyAt('04:00');
+</code></pre>
+<p>Laravel Scalpel provides peace of mind for engineering teams operating mission-critical production environments.</p>
+HTML,
+            ],
+            [
+                'title'       => 'Mercure Broadcasting in Laravel 13.32',
+                'category_key'=> 'news',
+                'author'      => 'Paul Redmond',
+                'date'        => '2026-09-16 10:20:00',
+                'theme'       => 'blue',
+                'is_featured' => false,
+                'resume'      => 'Laravel 13.32 adds first-class support for the Mercure broadcasting protocol, delivering real-time Server-Sent Events (SSE) without dedicated WebSocket clusters.',
+                'content'     => <<<'HTML'
+<h2>Native Mercure Protocol Support in Laravel 13.32</h2>
+<p>The release of <strong>Laravel 13.32</strong> introduces built-in driver support for the <strong>Mercure</strong> broadcasting protocol. Mercure enables real-time data streaming to browsers, mobile apps, and edge microservices using standard HTTP Server-Sent Events (SSE).</p>
+
+<h3>Why Mercure?</h3>
+<p>Unlike traditional WebSockets which require persistent bidirectional TCP connections, stateful proxy servers, and specialized client libraries, Mercure operates entirely over HTTP/2 and HTTP/3:</p>
+<ul>
+    <li><strong>No Node.js or Redis Socket Servers:</strong> Mercure runs effortlessly through FrankenPHP, Caddy, or standalone Docker instances.</li>
+    <li><strong>Native Browser Support:</strong> Frontend applications can subscribe to event streams using standard browser <code>EventSource</code> APIs without large vendor bundles.</li>
+    <li><strong>Battery & Firewall Friendly:</strong> SSE connections automatically reconnect, bypass enterprise proxy filters, and consume minimal mobile battery.</li>
+</ul>
+
+<h3>Configuring Mercure in Laravel</h3>
+<pre><code>// config/broadcasting.php
+'mercure' => [
+    'driver' => 'mercure',
+    'url'    => env('MERCURE_URL', 'http://127.0.0.1:2019/.well-known/mercure'),
+    'secret' => env('MERCURE_JWT_SECRET'),
+],
+
+// Dispatching events as usual
+event(new OrderStatusUpdated($order));
+</code></pre>
+HTML,
+            ],
+            [
+                'title'       => 'Super Stack: Laravel Starter Kit With Filament and NativePHP',
+                'category_key'=> 'laravel-packages',
+                'author'      => 'Yannick Lyn Fatt',
+                'date'        => '2026-09-15 16:00:00',
+                'theme'       => 'emerald',
+                'is_featured' => true,
+                'resume'      => 'Super Stack is an opinionated boilerplate combining Laravel 13, Filament v3 admin panels, and NativePHP for building cross-platform desktop and mobile applications.',
+                'content'     => <<<'HTML'
+<h2>The Ultimate Desktop & Web Starter Kit</h2>
+<p>Building an application that serves both as an enterprise web portal and as a native desktop application used to require separate frontend codebases and divergent API maintenance. <strong>Super Stack</strong> brings together Laravel 13, Filament v3, Livewire 3, and NativePHP into a unified development workflow.</p>
+
+<h3>Core Highlights of Super Stack</h3>
+<ul>
+    <li><strong>Unified UI Components:</strong> Build once using Blade and Tailwind CSS; run seamlessly inside macOS, Windows, Linux, and web browsers.</li>
+    <li><strong>Pre-configured Filament v3:</strong> Full administrative dashboard with user management, role-based permissions, and activity audits ready out of the box.</li>
+    <li><strong>Native System Integrations:</strong> Access native system trays, global keyboard shortcuts, local SQLite storage, and notifications through NativePHP.</li>
+    <li><strong>Automated App Packaging:</strong> Build desktop executables with a single command via <code>php artisan native:build</code>.</li>
+</ul>
+
+<h3>Example: Native Tray Integration</h3>
+<pre><code>namespace App\Providers;
+
+use Native\Laravel\Facades\MenuBar;
+use Illuminate\Support\ServiceProvider;
+
+class NativeAppServiceProvider extends ServiceProvider
 {
-    public int $debounce = 30;
-
-    public function handle(UserProfileUpdated $event): void
+    public function boot(): void
     {
-        IndexingService::reindex($event->user);
+        MenuBar::create()
+            ->icon(public_path('tray-icon.png'))
+            ->route('desktop.dashboard')
+            ->width(450)
+            ->height(600);
     }
 }
 </code></pre>
 HTML,
             ],
             [
-                'title'       => 'Statamic Mailables Viewer Previews Laravel Emails in the Control Panel',
+                'title'       => 'Laravel MCP 1.0 Is Released',
                 'category_key'=> 'news',
                 'author'      => 'Eric L. Barnes',
-                'date'        => '2026-08-20 18:00:00',
+                'date'        => '2026-09-15 13:30:00',
                 'theme'       => 'purple',
-                'is_featured' => false,
-                'resume'      => 'Statamic\'s new Mailables Viewer addon allows content managers and developers to preview and test Laravel Blade emails directly inside the control panel.',
+                'is_featured' => true,
+                'resume'      => 'The official 1.0 release of Laravel MCP brings Anthropic\'s Model Context Protocol to Laravel, connecting AI agents directly to artisan commands, routes, and database schemas.',
                 'content'     => <<<'HTML'
-<h2>Interactive Email Previews in Statamic</h2>
-<p>Statamic has released <strong>Mailables Viewer</strong>, an official addon that embeds interactive Laravel email previews directly inside the Statamic Control Panel.</p>
+<h2>Connecting Laravel to AI Agents with MCP 1.0</h2>
+<p>The official <strong>1.0 release of Laravel MCP</strong> is now live! Model Context Protocol (MCP) is an open standard that allows AI assistants—including Claude Desktop, Cursor, and IDE agents—to securely connect with external tools, data sources, and runtime context.</p>
 
-<pre><code>$ composer require statamic/mailables-viewer --dev
+<h3>Supercharging AI Coding Workflows</h3>
+<p>With Laravel MCP installed, your AI pair programmer can intelligently read and interact with your Laravel application context in real time:</p>
+<ul>
+    <li><strong>Schema Introspection:</strong> AI assistants inspect tables, foreign keys, and indexes directly from your database connection.</li>
+    <li><strong>Route & Middleware Mapping:</strong> Instantly discover active route patterns, middleware pipelines, and controller bindings.</li>
+    <li><strong>Artisan Command Execution:</strong> Run safe migrations, route lists, and test suites with guided confirmation.</li>
+    <li><strong>Log & Error Diagnostics:</strong> Read Laravel log streams to diagnose runtime exceptions without copy-pasting stack traces.</li>
+</ul>
+
+<h3>Quick Setup</h3>
+<pre><code># Install Laravel MCP server
+composer require laravel/mcp --dev
+
+# Start MCP Server
+php artisan mcp:serve
 </code></pre>
+<p>Laravel MCP represents a major milestone in integrating artificial intelligence into day-to-day software development.</p>
 HTML,
             ],
             [
-                'title'       => 'Laravel Tackle: Run an AI Coding Agent in Your Laravel App',
-                'category_key'=> 'laravel-packages',
-                'author'      => 'Yannick Lyn Fatt',
-                'date'        => '2026-08-20 14:10:00',
+                'title'       => 'Laravel Vet: Review Composer Code Before It Installs',
+                'category_key'=> 'news',
+                'author'      => 'Eric L. Barnes',
+                'date'        => '2026-09-15 09:15:00',
                 'theme'       => 'amber',
                 'is_featured' => false,
-                'resume'      => 'Laravel Tackle is an embedded coding agent package that automates migrations, refactoring, and Pest tests via artisan commands.',
+                'resume'      => 'Laravel Vet is a Composer plugin that analyzes third-party package dependencies for supply chain risks, malicious scripts, and CVE vulnerabilities prior to package installation.',
                 'content'     => <<<'HTML'
-<h2>Automated Coding Tasks with Laravel Tackle</h2>
-<p><strong>Laravel Tackle</strong> brings an autonomous coding assistant into your local Laravel environment. Designed for rapid iteration, Tackle can create database migrations, write controller actions, and generate Pest test suites.</p>
+<h2>Supply Chain Security with Laravel Vet</h2>
+<p>Open-source dependencies power modern web development, but supply chain attacks and package account takeovers have become increasingly sophisticated. <strong>Laravel Vet</strong> is an automated security gatekeeper that vets every Composer package before it touches your disk.</p>
 
-<pre><code>$ php artisan tackle:make "Create a subscription billing migration and model with status and renewal_date"
+<h3>Pre-Installation Protection</h3>
+<p>Traditional security checkers run after packages have already been extracted and post-install hooks have executed. Laravel Vet intercepts Composer execution during resolution:</p>
+<ul>
+    <li><strong>Script Hook Verification:</strong> Warns when a package attempts to execute arbitrary shell scripts or downloads binaries in <code>post-autoload-dump</code> hooks.</li>
+    <li><strong>Maintainer Reputation Checks:</strong> Flags freshly published package versions or sudden ownership reassignments.</li>
+    <li><strong>CVE & Advisory Database Audits:</strong> Correlates dependencies with the FriendsOfPHP and GitHub Security Advisory databases.</li>
+</ul>
+
+<pre><code># Install Laravel Vet globally
+composer global require laravel/vet
+
+# Run safe package installation
+composer require vendor/cool-package
+# [VETTING] vendor/cool-package (v1.2.0)
+#  ✓ Maintainer verified: JohnDoe (5 yrs active)
+#  ✓ Zero reported CVEs
+#  ✓ No suspicious install lifecycle hooks
+# [STATUS] Package approved for installation.
 </code></pre>
 HTML,
             ],
             [
-                'title'       => 'Queue::forward(): Reroute Laravel Queues in One Place',
+                'title'       => 'What\'s New in PHP 8.6',
                 'category_key'=> 'news',
                 'author'      => 'Paul Redmond',
-                'date'        => '2026-08-20 09:30:00',
+                'date'        => '2026-09-14 15:00:00',
+                'theme'       => 'blue',
+                'is_featured' => true,
+                'resume'      => 'Explore the upcoming features and syntax enhancements in PHP 8.6, including refined pattern matching, asymmetric visibility extensions, and core runtime optimizations.',
+                'content'     => <<<'HTML'
+<h2>Previewing Features and RFCs in PHP 8.6</h2>
+<p>As PHP continues its annual release schedule, discussion on the PHP internals mailing list has crystalized around key RFCs targeting <strong>PHP 8.6</strong>. Let’s explore the syntax additions and performance milestones planned for this upcoming release.</p>
+
+<h3>Pattern Matching Evolution</h3>
+<p>PHP 8.6 expands on the <code>match</code> expression introduced in PHP 8.0, allowing pattern decomposition and structure destructuring directly in match branches:</p>
+
+<pre><code>// Pattern matching with destructuring in PHP 8.6
+$result = match ($response) {
+    ['status' => 200, 'data' => $data] => processSuccess($data),
+    ['status' => 404]                  => handleNotFound(),
+    ['status' => 500, 'error' => $err] => logServerError($err),
+    default                            => handleUnexpected(),
+};
+</code></pre>
+
+<h3>Enhanced JIT and Memory Footprint</h3>
+<ul>
+    <li><strong>Hybrid Tracing JIT:</strong> Further refinements to the JIT compiler yield an additional 8-12% throughput improvement on CPU-bound PHP CLI workloads.</li>
+    <li><strong>Compact Object Representation:</strong> Internal zval optimization reduces base object memory footprints by nearly 15%.</li>
+    <li><strong>Typed Exceptions:</strong> RFC proposals for catching multiple typed exceptions with unified variable bindings.</li>
+</ul>
+
+<p>PHP 8.6 proves that PHP remains one of the fastest, most ergonomic server-side languages in the industry.</p>
+HTML,
+            ],
+            [
+                'title'       => 'Building EasyReply: How We Used Laravel to Unify Customer Support',
+                'category_key'=> 'sponsor',
+                'author'      => 'Emma Blake',
+                'date'        => '2026-09-14 11:30:00',
+                'theme'       => 'rose',
+                'is_featured' => false,
+                'resume'      => 'A technical deep-dive into how EasyReply leveraged Laravel, Livewire 3, and Horizon queues to build an enterprise shared inbox processing millions of emails each week.',
+                'content'     => <<<'HTML'
+<h2>Scaling a Shared Support Inbox with Laravel</h2>
+<p>When building <strong>EasyReply</strong>—a high-volume shared support platform for SaaS companies—we needed an architecture capable of processing incoming email webhooks, coordinating agent responses in real time, and maintaining sub-second UI responsiveness.</p>
+
+<h3>The Technical Stack</h3>
+<ul>
+    <li><strong>Laravel 13 & Octane:</strong> Powering our webhook ingestion endpoints, processing over 4,000 inbound emails per minute with microsecond overhead.</li>
+    <li><strong>Livewire 3 & Alpine.js:</strong> Delivering a reactive inbox interface that updates conversation threads in real time without heavy Single Page Application complexity.</li>
+    <li><strong>Laravel Horizon & Redis:</strong> Managing prioritized queue workers for email parsing, sentiment tagging, and customer notifications.</li>
+    <li><strong>PostgreSQL Full-Text Search:</strong> Indexing millions of customer conversation histories with Gin indexing for instant search results.</li>
+</ul>
+
+<h3>Lessons Learned</h3>
+<p>By relying heavily on first-party Laravel ecosystem tools, our four-person engineering team built a platform that competes directly with legacy enterprise support software. Laravel's expressive syntax and robust queueing system saved us months of infrastructure engineering.</p>
+HTML,
+            ],
+            [
+                'title'       => 'PostgreSQL Monitoring and Schema Linting for Laravel with Vacuum',
+                'category_key'=> 'laravel-packages',
+                'author'      => 'Paul Redmond',
+                'date'        => '2026-09-11 14:45:00',
+                'theme'       => 'cyan',
+                'is_featured' => false,
+                'resume'      => 'Keep your PostgreSQL databases performant with Vacuum, a Laravel package that tracks table bloat, autovacuum health, missing foreign key indexes, and slow query patterns.',
+                'content'     => <<<'HTML'
+<h2>Mastering PostgreSQL Performance with Vacuum</h2>
+<p>PostgreSQL is a favorite database among Laravel developers, but high-write workloads can lead to dead tuple accumulation, unindexed foreign keys, and table bloat that degrades query performance. <strong>Vacuum</strong> is a purpose-built package for monitoring and tuning PostgreSQL databases inside Laravel applications.</p>
+
+<h3>What Vacuum Checks</h3>
+<ul>
+    <li><strong>Dead Tuple & Table Bloat:</strong> Monitors table fragmentation and alerts when autovacuum routines fail to keep pace with record updates.</li>
+    <li><strong>Missing Foreign Key Indexes:</strong> Identifies unindexed relation columns that trigger table-wide sequential scans during cascade operations.</li>
+    <li><strong>Transaction ID Wraparound:</strong> Keeps track of database transaction age to prevent catastrophic database shutdown states.</li>
+    <li><strong>Unused & Duplicate Indexes:</strong> Recommends obsolete indexes that consume write throughput and disk cache without improving query plans.</li>
+</ul>
+
+<h3>CLI Command Example</h3>
+<pre><code># Run complete PostgreSQL health audit
+php artisan vacuum:check
+
+# Inspect bloat on specific table
+php artisan vacuum:bloat users
+</code></pre>
+HTML,
+            ],
+            [
+                'title'       => 'PayZephyr: One Payment API for Stripe, Paystack, and PayPal',
+                'category_key'=> 'laravel-packages',
+                'author'      => 'Paul Redmond',
+                'date'        => '2026-09-10 16:15:00',
+                'theme'       => 'emerald',
+                'is_featured' => false,
+                'resume'      => 'PayZephyr unifies Stripe, Paystack, and PayPal into a single, elegant Laravel payment abstraction with multi-currency checkouts and standardized webhook processing.',
+                'content'     => <<<'HTML'
+<h2>Unified Global Payments with PayZephyr</h2>
+<p>Integrating multiple payment providers across international markets usually requires implementing separate SDKs, diverging webhook listeners, and inconsistent data models. <strong>PayZephyr</strong> provides a single, unified payment interface for Laravel that connects Stripe, Paystack, and PayPal seamlessly.</p>
+
+<h3>Key Features</h3>
+<ul>
+    <li><strong>Single Fluent API:</strong> Charge cards, initialize checkouts, and generate payment links using identical PHP syntax across all supported gateways.</li>
+    <li><strong>Standardized Webhook Dispatching:</strong> Unifies gateway-specific webhook events into consistent Laravel events (e.g. <code>PaymentReceived</code>, <code>SubscriptionRenewed</code>).</li>
+    <li><strong>Automatic Currency Routing:</strong> Routes payments to the most cost-effective gateway based on customer country and currency.</li>
+</ul>
+
+<h3>Initiating a Payment</h3>
+<pre><code>use PayZephyr\Facades\PayZephyr;
+
+$payment = PayZephyr::gateway('stripe')
+    ->amount(49.99)
+    ->currency('USD')
+    ->customer($user)
+    ->description('Monthly SaaS Pro Plan')
+    ->checkout();
+
+return redirect($payment->checkoutUrl());
+</code></pre>
+HTML,
+            ],
+            [
+                'title'       => 'Bifrost Turns One With AI Builds and New Workflows',
+                'category_key'=> 'news',
+                'author'      => 'Yannick Lyn Fatt',
+                'date'        => '2026-09-10 13:00:00',
+                'theme'       => 'purple',
+                'is_featured' => false,
+                'resume'      => 'Bifrost celebrates its first anniversary by unveiling automated AI build troubleshooting, preview pull-request environments, and zero-downtime deployment pipelines for Laravel.',
+                'content'     => <<<'HTML'
+<h2>Bifrost Celebrates One Year of Effortless Deployments</h2>
+<p>One year after its launch, <strong>Bifrost</strong>—the dedicated deployment and CI/CD platform engineered for modern Laravel applications—has celebrated its first anniversary with a major release introducing AI-assisted build analysis and ephemeral preview environments.</p>
+
+<h3>Key Additions in the Anniversary Release</h3>
+<ul>
+    <li><strong>AI Build Diagnostics:</strong> When a deployment script or migration fails, Bifrost's integrated AI analyzes deployment logs and pinpoints the exact fix, whether it's a missing environment variable or an unresolved Composer dependency.</li>
+    <li><strong>Ephemeral Pull Request Environments:</strong> Automatically spins up isolated testing environments with sanitized database seeds for every opened GitHub pull request.</li>
+    <li><strong>Zero-Downtime Atomic Swaps:</strong> Instant symlink switching ensures active user sessions and queue jobs experience zero interruptions during code updates.</li>
+</ul>
+
+<p>Bifrost continues to raise the bar for seamless Laravel continuous delivery.</p>
+HTML,
+            ],
+            [
+                'title'       => 'Preview Blade Templates in macOS Finder with Quick Blade',
+                'category_key'=> 'laravel-packages',
+                'author'      => 'Paul Redmond',
+                'date'        => '2026-09-10 09:30:00',
+                'theme'       => 'amber',
+                'is_featured' => false,
+                'resume'      => 'Quick Blade is a native macOS QuickLook extension that renders syntax-highlighted previews of Laravel Blade templates directly within Finder and Spotlight.',
+                'content'     => <<<'HTML'
+<h2>Instant Blade Previews in macOS Finder</h2>
+<p>On macOS, selecting a file in Finder and tapping the Spacebar triggers QuickLook. However, files ending in <code>.blade.php</code> historically rendered as generic text icons without syntax highlighting. <strong>Quick Blade</strong> resolves this frustration for Mac-based Laravel developers.</p>
+
+<h3>Features of Quick Blade</h3>
+<ul>
+    <li><strong>Full Blade Syntax Highlighting:</strong> Recognizes Blade directives (<code>@if</code>, <code>@foreach</code>, <code>@props</code>), HTML tags, and embedded PHP blocks with crisp colors.</li>
+    <li><strong>Light & Dark Mode Support:</strong> Automatically matches your macOS system appearance.</li>
+    <li><strong>Zero Performance Impact:</strong> Built natively using Swift and Apple's QuickLook framework for instantaneous opening with zero latency.</li>
+</ul>
+
+<pre><code># Install Quick Blade via Homebrew Cask
+brew install --cask quick-blade
+
+# Restart Finder QuickLook service
+qlmanage -r
+</code></pre>
+HTML,
+            ],
+            [
+                'title'       => 'Artisan Debugging Commands in Laravel Telescope 5.24.0',
+                'category_key'=> 'news',
+                'author'      => 'Yannick Lyn Fatt',
+                'date'        => '2026-09-09 14:30:00',
                 'theme'       => 'blue',
                 'is_featured' => false,
-                'resume'      => 'Simplify queue management with Queue::forward(), allowing dynamic job rerouting to high-priority workers or dead-letter queues.',
+                'resume'      => 'Laravel Telescope 5.24.0 introduces new CLI artisan commands to inspect logs, stream database queries in real-time, and manage storage directly from the terminal.',
                 'content'     => <<<'HTML'
-<h2>Dynamic Job Routing with Queue::forward()</h2>
-<p>Rerouting failed jobs or forwarding specific background tasks based on payload attributes previously required modifying individual job classes. Laravel introduces <code>Queue::forward()</code> to handle centralized job routing.</p>
+<h2>CLI Debugging in Laravel Telescope 5.24.0</h2>
+<p>While Laravel Telescope's web dashboard is beloved by developers, logging into a remote staging server often means working purely within a terminal session. <strong>Telescope 5.24.0</strong> introduces dedicated CLI commands that bring Telescope's telemetry directly into your terminal.</p>
+
+<h3>New Artisan Commands</h3>
+<ul>
+    <li><strong><code>php artisan telescope:tail</code>:</strong> Stream outgoing queries, executed jobs, and thrown exceptions directly to stdout in real time.</li>
+    <li><strong><code>php artisan telescope:slow-queries</code>:</strong> Lists the slowest database queries recorded in Telescope with execution times and call traces.</li>
+    <li><strong><code>php artisan telescope:prune --tag=billing</code>:</strong> Prune entries matching specific tags or time ranges without wiping the entire Telescope database.</li>
+</ul>
+
+<pre><code># Stream slow queries live during load testing
+php artisan telescope:tail --filter=queries --slow-only
+# [0.482s] SELECT * FROM orders WHERE status = 'pending' (App\Actions\ProcessOrders:34)
+# [0.612s] UPDATE inventory SET stock = stock - 1 (App\Services\CheckoutService:88)
+</code></pre>
+HTML,
+            ],
+            [
+                'title'       => 'Queue totalSize() and JobInterrupted Event in Laravel 13.31',
+                'category_key'=> 'news',
+                'author'      => 'Paul Redmond',
+                'date'        => '2026-09-08 15:00:00',
+                'theme'       => 'emerald',
+                'is_featured' => false,
+                'resume'      => 'Laravel 13.31 delivers Queue::totalSize() for aggregate multi-queue metrics and a dedicated JobInterrupted event for handling graceful worker terminations and container preemption.',
+                'content'     => <<<'HTML'
+<h2>Queue Improvements in Laravel 13.31</h2>
+<p>The release of <strong>Laravel 13.31</strong> provides two significant enhancements for background queue management: aggregate queue size introspection and graceful worker interruption events.</p>
+
+<h3>Aggregate Queue Sizing with <code>Queue::totalSize()</code></h3>
+<p>Previously, monitoring aggregate queue depth required querying each queue name individually. Laravel 13.31 introduces <code>Queue::totalSize()</code>:</p>
 
 <pre><code>use Illuminate\Support\Facades\Queue;
-use App\Jobs\ProcessVideoUpload;
 
-Queue::forward(ProcessVideoUpload::class, function (ProcessVideoUpload $job) {
-    if ($job->fileSize > 500 * 1024 * 1024) {
-        return 'heavy-video-processing';
-    }
-    return 'default';
+// Fetch total count across all queues on the default connection
+$pendingJobs = Queue::totalSize();
+
+// Or check specific connection
+$redisDepth = Queue::connection('redis')->totalSize(['high', 'default', 'low']);
+</code></pre>
+
+<h3>Handling Worker Terminations with <code>JobInterrupted</code></h3>
+<p>When running queue workers on Kubernetes or AWS ECS, spot instance terminations send SIGTERM signals to running containers. The new <code>JobInterrupted</code> event allows executing cleanup logic before workers terminate:</p>
+
+<pre><code>use Illuminate\Queue\Events\JobInterrupted;
+use Illuminate\Support\Facades\Event;
+
+Event::listen(JobInterrupted::class, function (JobInterrupted $event) {
+    logger()->warning("Job {$event->job->resolveName()} was interrupted by system signal.");
+    // Release locks, update progress indicators, or send alerts
 });
 </code></pre>
 HTML,
             ],
             [
-                'title'       => 'Laravel Read-Through Filesystem: Lazy Storage Migration',
-                'category_key'=> 'news',
-                'author'      => 'Paul Redmond',
-                'date'        => '2026-08-19 15:45:00',
-                'theme'       => 'emerald',
-                'is_featured' => false,
-                'resume'      => 'Seamlessly migrate local storage assets to S3 cloud buckets on demand with Laravel\'s Read-Through Filesystem adapter.',
-                'content'     => <<<'HTML'
-<h2>Lazy File Migration with Read-Through Filesystem</h2>
-<p>Migrating millions of user uploads from local disks to AWS S3 or Cloudflare R2 often involves risky script deployments. Laravel's new <strong>Read-Through Filesystem</strong> driver simplifies cloud migrations by lazily transferring files on request.</p>
-
-<pre><code>'disks' => [
-    's3_read_through' => [
-        'driver'       => 'read-through',
-        'primary'      => 's3',
-        'fallback'     => 'local',
-        'auto_migrate' => true,
-    ],
-],
-</code></pre>
-HTML,
-            ],
-            [
-                'title'       => 'Read-Through Disks and Debounced Listeners in Laravel 13.26',
-                'category_key'=> 'news',
-                'author'      => 'Paul Redmond',
-                'date'        => '2026-08-19 10:20:00',
-                'theme'       => 'cyan',
-                'is_featured' => false,
-                'resume'      => 'Explore the highlights of Laravel 13.26 including read-through storage drivers, debounced listeners, and Pest 3 test assertions.',
-                'content'     => <<<'HTML'
-<h2>Laravel 13.26 Release Notes</h2>
-<p>Laravel 13.26 is officially available! This release packs powerful storage and queuing features along with several developer experience enhancements.</p>
-
-<ul>
-    <li><strong>Read-Through Disks:</strong> Native lazy storage migration between local and cloud disks.</li>
-    <li><strong>Debounced Listeners:</strong> Granular control over event listener execution windows.</li>
-    <li><strong>Pest 3 Assertions:</strong> Added <code>assertDispatchedTimes()</code> and improved mock type hints.</li>
-</ul>
-HTML,
-            ],
-            [
-                'title'       => 'Lerd: A Free, Open Source Herd Alternative for Linux and macOS',
-                'category_key'=> 'sponsor',
-                'author'      => 'George Dumitrescu',
-                'date'        => '2026-08-18 16:50:00',
+                'title'       => 'Find Unexpected Test Inputs with Fuzz for Pest',
+                'category_key'=> 'laravel-packages',
+                'author'      => 'Yannick Lyn Fatt',
+                'date'        => '2026-09-07 14:00:00',
                 'theme'       => 'purple',
                 'is_featured' => false,
-                'resume'      => 'Lerd is an open-source development environment manager for Linux and macOS with native FrankenPHP, Nginx, and PHP multi-version support.',
+                'resume'      => 'Fuzz for Pest brings automated fuzz testing to Pest PHP, discovering unhandled exceptions and security boundaries by throwing thousands of mutated inputs at your functions.',
                 'content'     => <<<'HTML'
-<h2>Lightweight Local Development with Lerd</h2>
-<p>Linux developers looking for a fast, native local development environment manager can now use <strong>Lerd</strong>, an open-source alternative to Laravel Herd built for Linux (Ubuntu, Debian, Fedora, Arch) and macOS.</p>
+<h2>Automated Fuzz Testing in Pest PHP</h2>
+<p>Traditional unit tests verify scenarios developers anticipate. Fuzz testing, by contrast, throws thousands of randomized, mutated, and edge-case inputs at your code to find unhandled crashes, memory leaks, and type errors. <strong>Fuzz for Pest</strong> brings first-class fuzzing directly into Pest PHP.</p>
 
-<pre><code>$ lerd park
-$ lerd link my-app
-$ lerd isolate 8.4
+<h3>Writing a Fuzz Test</h3>
+<pre><code>// tests/Feature/ParserTest.php
+it('safely parses user submitted markdown', function () {
+    fuzz(function (string $input) {
+        $result = app(MarkdownParser::class)->parse($input);
+        expect($result)->toBeString();
+    })->iterations(5000);
+});
 </code></pre>
+
+<h3>What Fuzz Tests Uncover</h3>
+<ul>
+    <li>Invalid UTF-8 byte sequences causing string function crashes.</li>
+    <li>Integer overflow edge cases in pricing algorithms.</li>
+    <li>Infinite loops in recursive tree structures and regex evaluations.</li>
+    <li>Unhandled JSON deserialization anomalies.</li>
+</ul>
+
+<p>Adding fuzz tests to critical financial or parsing logic dramatically increases software resilience.</p>
 HTML,
             ],
             [
-                'title'       => 'Let\'s Encrypt HTTPS on an IP Address With FrankenPHP',
-                'category_key'=> 'news',
-                'author'      => 'Yannick Lyn Fatt',
-                'date'        => '2026-08-18 12:10:00',
-                'theme'       => 'rose',
-                'is_featured' => false,
-                'resume'      => 'Learn how to configure automatic Let\'s Encrypt TLS certificates directly on public IP addresses using FrankenPHP.',
-                'content'     => <<<'HTML'
-<h2>Automated TLS on Raw IP Addresses with FrankenPHP</h2>
-<p>Traditionally, obtaining automated Let's Encrypt TLS certificates required a fully qualified domain name (FQDN). With recent ACME protocol updates and FrankenPHP's integrated Caddy web server, obtaining HTTPS certificates directly on public IP addresses is now straightforward.</p>
-
-<pre><code># Caddyfile
-203.0.113.45 {
-    tls admin@example.com
-    
-    frankenphp {
-        web_root /var/www/html/public
-    }
-}
-</code></pre>
-HTML,
-            ],
-            [
-                'title'       => 'Laravel Chores: Resumable Data Operations and Cleanups',
+                'title'       => 'Laravel Rulebook: Business Rules That Change by Date',
                 'category_key'=> 'laravel-packages',
-                'author'      => 'Paul Redmond',
-                'date'        => '2026-08-18 08:30:00',
+                'author'      => 'Yannick Lyn Fatt',
+                'date'        => '2026-09-04 16:30:00',
                 'theme'       => 'amber',
                 'is_featured' => false,
-                'resume'      => 'Laravel Chores is a package for executing idempotent, resumable background data cleanup operations with state persistence.',
+                'resume'      => 'Laravel Rulebook offers a clean architecture for managing time-sensitive business logic, such as holiday pricing, tax adjustments, and regulatory cutoffs, without messy conditional code.',
                 'content'     => <<<'HTML'
-<h2>Idempotent Data Operations with Laravel Chores</h2>
-<p>Running multi-hour database cleanups or data backfills in production can be prone to network timeouts or queue worker restarts. <strong>Laravel Chores</strong> provides a resilient structure for defining resumable background operations.</p>
+<h2>Managing Temporal Business Logic with Laravel Rulebook</h2>
+<p>When business rules change on a specific date—such as tax rate increases, holiday promotional discounts, or new compliance regulations—controllers often become cluttered with messy date comparisons:</p>
 
-<pre><code>namespace App\Chores;
+<pre><code>// The messy approach:
+if (now()->between($blackFridayStart, $blackFridayEnd)) {
+    $discount = 0.25;
+} elseif (now()->isAfter($q4Cutoff)) {
+    $discount = 0.15;
+}
+</code></pre>
 
-use Laravel\Chores\Chore;
+<h3>The Rulebook Architecture</h3>
+<p><strong>Laravel Rulebook</strong> introduces a clean, declarative approach to time-sensitive policy modeling:</p>
 
-class PruneOldAuditLogs extends Chore
+<pre><code>namespace App\Rules\Pricing;
+
+use LaravelRulebook\Rule;
+
+class HolidayDiscountRule extends Rule
 {
-    public int $chunkSize = 5000;
-
-    public function handle(): void
+    public function effectiveDate(): string
     {
-        AuditLog::where('created_at', '<', now()->subYears(2))
-            ->chunkById($this->chunkSize, function ($logs) {
-                foreach ($logs as $log) {
-                    $log->delete();
-                    $this->advance();
-                }
-            });
+        return '2026-11-25 to 2026-12-02';
+    }
+
+    public function apply($cart): void
+    {
+        $cart->discountPercentage = 25;
     }
 }
 </code></pre>
+
+<p>Rulebook allows querying and testing rules against past, present, or future dates without touching system clocks.</p>
+HTML,
+            ],
+            [
+                'title'       => 'Taylor disabled GitHub Issues on most Laravel open-source packages.',
+                'category_key'=> 'news',
+                'author'      => 'Eric L. Barnes',
+                'date'        => '2026-09-04 11:00:00',
+                'theme'       => 'rose',
+                'is_featured' => true,
+                'resume'      => 'Taylor Otwell announces the transition of Laravel\'s open-source issue trackers to GitHub Discussions, focusing maintainer time on reproducible pull requests and community collaboration.',
+                'content'     => <<<'HTML'
+<h2>Refocusing Open-Source Collaboration in the Laravel Community</h2>
+<p>In a blog post that generated widespread discussion across the software ecosystem, <strong>Taylor Otwell</strong> announced that GitHub Issues have been disabled across most primary Laravel open-source repositories.</p>
+
+<h3>The Motivation Behind the Change</h3>
+<p>As Laravel has grown to millions of active installations worldwide, issue trackers frequently became inundated with general support questions, configuration misunderstandings, and questions better suited for community forums. This high volume placed an unsustainable burden on core framework maintainers.</p>
+
+<h3>The New Collaboration Model</h3>
+<ul>
+    <li><strong>GitHub Discussions:</strong> Questions, feature proposals, and open-ended technical ideas are now directed to repository GitHub Discussions.</li>
+    <li><strong>Pull Requests with Reproductions:</strong> Verified bug reports are welcomed directly as pull requests featuring failing Pest or PHPUnit tests.</li>
+    <li><strong>Dedicated Bug Triaging:</strong> Community contributors can collaborate on reproducing issues in Discussions before raising code fixes.</li>
+</ul>
+
+<p>This transition ensures that core maintainers can spend their energy enhancing the framework, accelerating code reviews, and building the future of Laravel.</p>
 HTML,
             ],
         ];
@@ -611,21 +735,42 @@ HTML,
                 $vlog['theme']
             );
 
-            // Create or update Post model
-            $post = Post::create([
-                'user_id'     => $userId,
-                'category_id' => $catId,
-                'content'     => $vlog['content'],
-                'resume'      => $vlog['resume'],
-                'is_active'   => true,
-                'is_featured' => $vlog['is_featured'],
-                'style'       => 'default',
-                'img_cover'   => $imgFilename,
-                'created_at'  => $vlog['date'],
-                'updated_at'  => $vlog['date'],
-            ]);
+            // Find existing page/post to maintain idempotency
+            $existingPage = Page::where('slug', 'blog/post/' . $slugTitle . '.html')->first();
+            $post = null;
+            if ($existingPage && $existingPage->post_id) {
+                $post = Post::find($existingPage->post_id);
+            }
 
-            // Create Page model linked to Post (updateOrCreate to ensure idempotency)
+            if ($post) {
+                $post->update([
+                    'user_id'     => $userId,
+                    'category_id' => $catId,
+                    'content'     => $vlog['content'],
+                    'resume'      => $vlog['resume'],
+                    'is_active'   => true,
+                    'is_featured' => $vlog['is_featured'],
+                    'style'       => 'default',
+                    'img_cover'   => $imgFilename,
+                    'created_at'  => $vlog['date'],
+                    'updated_at'  => $vlog['date'],
+                ]);
+            } else {
+                $post = Post::create([
+                    'user_id'     => $userId,
+                    'category_id' => $catId,
+                    'content'     => $vlog['content'],
+                    'resume'      => $vlog['resume'],
+                    'is_active'   => true,
+                    'is_featured' => $vlog['is_featured'],
+                    'style'       => 'default',
+                    'img_cover'   => $imgFilename,
+                    'created_at'  => $vlog['date'],
+                    'updated_at'  => $vlog['date'],
+                ]);
+            }
+
+            // Create or update Page model linked to Post
             Page::updateOrCreate(
                 ['slug' => 'blog/post/' . $slugTitle . '.html'],
                 [
