@@ -5,127 +5,127 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
         <loc>http://localhost:8000/projects/warriorfolio-developer-portfolio-builder.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:29+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/projects/shopvue-modern-e-commerce-platform.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:29+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/projects/pulsemetrics-real-time-saas-analytics-dashboard.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:29+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/projects/filamenterp-enterprise-resource-planning-portal.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:29+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/projects/ignitecore-lightweight-rest-microservice-engine.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/projects/taskcraft-full-stack-team-collaboration-suite.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:30+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>http://localhost:8000/docs</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:30+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:30+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/mastering-laravel-11-modern-architecture-actions-and-minimal-configuration.html</loc>
-        <lastmod>2026-10-21T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/building-reactive-uis-with-vue-3-composition-api-script-setup.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-21T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/livewire-3-deep-dive-dynamic-full-stack-components-without-javascript-overkill.html</loc>
-        <lastmod>2026-10-20T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-20T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/enterprise-admin-dashboards-with-filament-php-v3.html</loc>
-        <lastmod>2026-10-20T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-21T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/codeigniter-4-vs-laravel-11-architectural-benchmarks-use-cases.html</loc>
-        <lastmod>2026-10-20T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-20T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/building-full-stack-spas-with-laravel-11-inertiajs-vue-3.html</loc>
-        <lastmod>2026-10-21T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/tailwind-css-v3-design-systems-for-modern-laravel-vue-applications.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-20T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/securing-restful-apis-in-laravel-11-with-sanctum-throttling.html</loc>
-        <lastmod>2026-10-20T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/laravel-eloquent-masterclass-eager-loading-query-optimization.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-20T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/livewire-3-form-objects-real-time-client-validation.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/advanced-filament-php-customization-custom-widgets-action-modals.html</loc>
-        <lastmod>2026-10-22T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-22T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>http://localhost:8000/blog/post/upgrading-legacy-codeigniter-3-projects-to-modern-codeigniter-4.html</loc>
-        <lastmod>2026-10-20T05:10:38+00:00</lastmod>
+        <lastmod>2026-10-21T05:24:30+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -246,6 +246,126 @@
     <url>
         <loc>http://localhost:8000/blog/post/taylor-disabled-github-issues-on-most-laravel-open-source-packages.html</loc>
         <lastmod>2026-09-04T11:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/php-security-releases-fix-two-critical-rce-vulnerabilities.html</loc>
+        <lastmod>2026-10-21T16:30:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/prevent-stale-database-reads-in-laravel-1338.html</loc>
+        <lastmod>2026-10-21T11:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/critical-php-security-release-coming-tomorrow-october-21.html</loc>
+        <lastmod>2026-10-20T16:30:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/critical-token-guard-auth-bypass-fixed-in-laravel-1329-and-1268.html</loc>
+        <lastmod>2026-10-20T10:45:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/run-large-planetscale-queries-in-laravel-with-dbolap.html</loc>
+        <lastmod>2026-10-19T15:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/fluent-rule-builders-for-all-laravel-validation-rules.html</loc>
+        <lastmod>2026-10-16T11:15:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/laravel-url-ai-transformer-extract-structured-data-from-urls.html</loc>
+        <lastmod>2026-10-15T13:30:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/rule-builders-for-every-validation-rule-in-laravel-1336.html</loc>
+        <lastmod>2026-10-14T14:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/php-news-a-new-site-for-php-releases-rfcs-and-packages.html</loc>
+        <lastmod>2026-10-13T15:45:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/pause-polling-in-background-tabs-in-inertiajs-v39.html</loc>
+        <lastmod>2026-10-13T10:30:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/look-what-you-helped-me-build.html</loc>
+        <lastmod>2026-10-12T16:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/bashbox-a-sandboxed-bash-interpreter-for-ai-agents-in-php.html</loc>
+        <lastmod>2026-10-12T11:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/running-laravels-scheduler-on-multiple-servers.html</loc>
+        <lastmod>2026-10-09T11:30:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/laravel-fake-assertions-now-accept-property-arrays.html</loc>
+        <lastmod>2026-10-08T14:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/routequery-and-model-defaults-in-laravel-1335.html</loc>
+        <lastmod>2026-10-07T15:30:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/laravel-ai-sdk-11-adds-agent-skills-and-cohere-chat.html</loc>
+        <lastmod>2026-10-07T10:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/vmpal-give-your-ai-agent-a-whole-computer.html</loc>
+        <lastmod>2026-10-06T17:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/synapse-a-dev-dashboard-for-laravel-ai-sdk-agents.html</loc>
+        <lastmod>2026-10-06T14:45:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/decide-with-jev-three-questions-in-one-request-with-the-laravel-ai-sdk.html</loc>
+        <lastmod>2026-10-06T12:15:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://localhost:8000/blog/post/grant-enum-based-roles-and-permissions-for-laravel.html</loc>
+        <lastmod>2026-10-06T09:30:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

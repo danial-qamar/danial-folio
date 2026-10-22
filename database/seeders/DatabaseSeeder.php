@@ -79,6 +79,7 @@ class DatabaseSeeder extends Seeder
             WelcomeNoteSeeder::class,
             BlogPostSeeder::class,
             VlogSeeder::class,
+            OctoberBlogSeeder::class,
             SectionSeeder::class,
             HeroSectionSeeder::class,
         ]);
